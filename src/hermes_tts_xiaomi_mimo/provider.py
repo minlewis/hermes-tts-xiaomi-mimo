@@ -5,7 +5,6 @@ import base64
 import logging
 import os
 from typing import Any, Dict, Iterator, List, Optional
-from urllib.parse import urljoin
 
 try:
     from openai import OpenAI
@@ -13,7 +12,6 @@ except ImportError:
     OpenAI = None  # type: ignore[misc,assignment]
 
 from agent.tts_provider import TTSProvider
-from tools.tool_backend_helpers import resolve_openai_audio_api_key
 
 logger = logging.getLogger(__name__)
 
@@ -71,10 +69,7 @@ class XiaomiMimoTTSProvider(TTSProvider):
         self._api_key = self._resolve_api_key()
 
     def _resolve_api_key(self) -> Optional[str]:
-        key = os.getenv("MIMO_API_KEY")
-        if key:
-            return key
-        return resolve_openai_audio_api_key("MIMO_API_KEY")
+        return os.getenv("MIMO_API_KEY")
 
     def is_available(self) -> bool:
         if OpenAI is None:
