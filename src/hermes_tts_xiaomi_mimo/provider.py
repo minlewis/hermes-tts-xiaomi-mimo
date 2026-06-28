@@ -120,6 +120,19 @@ class XiaomiMimoTTSProvider(TTSProvider):
     def default_voice(self) -> str:
         return "冰糖"
 
+    def list_voices(self) -> List[Dict[str, Any]]:
+        return [
+            {"id": "冰糖", "display": "冰糖", "language": "zh-CN", "gender": "female"},
+            {"id": "茉莉", "display": "茉莉", "language": "zh-CN", "gender": "female"},
+            {"id": "苏打", "display": "苏打", "language": "zh-CN", "gender": "male"},
+            {"id": "白桦", "display": "白桦", "language": "zh-CN", "gender": "male"},
+            {"id": "mimo_default", "display": "MiMo-默认", "language": "zh-CN", "gender": "female"},
+            {"id": "Mia", "display": "Mia", "language": "en", "gender": "female"},
+            {"id": "Chloe", "display": "Chloe", "language": "en", "gender": "female"},
+            {"id": "Milo", "display": "Milo", "language": "en", "gender": "male"},
+            {"id": "Dean", "display": "Dean", "language": "en", "gender": "male"},
+        ]
+
     def synthesize(
         self,
         text: str,
